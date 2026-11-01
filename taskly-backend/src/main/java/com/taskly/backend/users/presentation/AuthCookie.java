@@ -37,11 +37,18 @@ public class AuthCookie {
       for (String pair : header.split(";")) {
         int separator = pair.indexOf('=');
         if (separator > 0 && name.equals(pair.substring(0, separator).strip())) {
-          return pair.substring(separator + 1).strip();
+          return unquote(pair.substring(separator + 1).strip());
         }
       }
     }
     return null;
+  }
+
+  private static String unquote(String value) {
+    if (value.length() >= 2 && value.startsWith("\"") && value.endsWith("\"")) {
+      return value.substring(1, value.length() - 1);
+    }
+    return value;
   }
 
   private String build(String value, Duration age) {
