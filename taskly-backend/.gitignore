@@ -183,3 +183,10 @@ nbdist/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+.env
+.env.*
+!.env.example
+logs/
+*.log
+public/images/users/avatar-*
